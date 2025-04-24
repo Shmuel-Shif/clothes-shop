@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עגלת קניות - החנות שלנו</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">החנות שלנו</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="cart-page">
+        <h1>עגלת קניות</h1>
+        <div id="cart-items" class="cart-items">
+            <!-- פריטי העגלה יתווספו כאן דינמית -->
+        </div>
+        
+        <div class="cart-summary">
+            <div class="total">
+                <span>סה"כ:</span>
+                <span id="cart-total">₪0</span>
+            </div>
+            <button id="checkout-btn" class="checkout-btn" onclick="window.location.href='checkout.html'">
+                המשך לתשלום
+            </button>
+        </div>
+    </main>
+
+    <script src="js/cart.js"></script>
+</body>
+</html> 

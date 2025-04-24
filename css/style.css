@@ -1,0 +1,897 @@
+:root {
+    --primary-color: #ffecf3;  /* צבע פוקסיה עמוק */
+    --secondary-color: #ffecf3;  /* רקע ורוד בהיר */
+    --text-color: #363636;  /* אפור כהה לטקסט */
+    --border-color: #fda5b2;  /* ורוד בהיר לגבולות */
+    --accent-color: #ffd6ea;  /* ורוד חם יותר להדגשות */
+    --header-height: 70px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: #363636;
+}
+
+header {
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(255, 20, 147, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: var(--header-height);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #363636;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo i {
+    color: var(--primary-color);
+}
+
+.logo-image {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.cart-icon {
+    position: relative;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.cart-icon a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.cart-icon i {
+    font-size: 1.4rem;
+}
+
+#cart-count {
+    background: var(--accent-color);
+    color: var(--text-color);
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 20, 147, 0.08);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 20px rgba(255, 20, 147, 0.15);
+}
+
+.product-info {
+    padding: 1.2rem;
+    background: white;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-info h3 {
+    font-weight: 600;
+
+    color: #363636;
+}
+
+/* סגנונות חדשים ל-Splide */
+.splide {
+    width: 100%;
+    height: 200px;
+    flex-shrink: 0;
+}
+
+.splide__track {
+    height: 100%;
+}
+
+.splide__slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: white;
+}
+
+.splide__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+    max-height: 200px;
+}
+
+/* עיצוב החצים */
+.custom-arrow {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    opacity: 1;
+    transition: all 0.3s ease;
+    background: transparent !important;
+}
+
+.splide__arrow {
+    position: absolute;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: none !important;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    pointer-events: auto;
+}
+
+.splide__arrow--prev {
+    left: auto !important;
+    right: 10px !important;
+}
+
+.splide__arrow--next {
+    right: auto !important;
+    left: 10px !important;
+}
+
+/* תיקון כיוון החצים */
+.splide__arrow--next svg {
+    transform: rotate(180deg);
+}
+
+/* עיצוב הנקודות */
+.splide__pagination {
+    bottom: 10px !important;
+    position: absolute;
+    z-index: 10;
+}
+
+.splide__arrows {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.splide__pagination__page {
+    background: var(--border-color);
+    opacity: 0.5;
+    width: 6px;
+    height: 6px;
+    transition: all 0.3s ease;
+}
+
+.splide__pagination__page.is-active {
+    background: var(--primary-color);
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .splide {
+        height: 200px;
+    }
+    
+    .splide__pagination {
+        bottom: 5px !important;
+    }
+    
+    .splide__arrow {
+        top: 50% !important;
+        background: none !important;
+    }
+
+    .splide__arrow--prev {
+        right: 5px !important;
+        left: auto !important;
+    }
+
+    .splide__arrow--next {
+        left: 5px !important;
+        right: auto !important;
+    }
+
+    .custom-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .custom-arrow svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .logo span {
+        font-size: 1.2rem;
+    }
+
+    .cart-icon a {
+        font-size: 1rem;
+    }
+
+    .splide__slide img {
+        max-height: 200px;
+        padding: 0.25rem;
+    }
+
+    .product-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #363636;
+    display: flex;
+    align-items: center;
+}
+
+.price:before {
+    content: '₪';
+    font-size: 0.9em;
+    margin-left: 2px;
+}
+
+.add-to-cart {
+    background: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.add-to-cart:before {
+    content: '\f07a';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+.add-to-cart:hover {
+    background-color: var(--accent-color);
+}
+
+.add-to-cart:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 1200px) {
+    .products-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .products-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .products-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 1rem;
+        max-width: 100%;
+    }
+    
+    .splide {
+        height: 180px;
+    }
+    
+    .product-card {
+        border-radius: 8px;
+    }
+    
+    .splide__pagination {
+        bottom: -2rem;
+        z-index: 1;
+    }
+    
+    .splide__arrow {
+        top: calc(50% - 1rem);
+        transform: translateY(-50%);
+        z-index: 2;
+        opacity: 0.8;
+    }
+    
+    .splide__arrow--prev {
+        left: 0.2rem;
+    }
+
+    .splide__arrow--next {
+        right: 0.2rem;
+    }
+    
+    .add-to-cart {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .splide {
+        height: 150px;
+    }
+    
+    .splide__slide img {
+        max-height: 150px;
+    }
+    
+    .product-info {
+        padding: 0.5rem;
+    }
+    
+    .product-info h3 {
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .price {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .add-to-cart {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* סגנונות עגלת קניות */
+.cart-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.cart-items {
+    margin: 2rem 0;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item-details h3 {
+    margin: 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity-btn {
+    background: var(--secondary-color);
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.remove-item {
+    color: red;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.cart-summary {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #363636;
+}
+
+.checkout-btn {
+    background: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .cart-item {
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: auto auto;
+    }
+    
+    .quantity-controls {
+        grid-column: 1 / -1;
+        justify-content: center;
+    }
+}
+
+/* סגנונות עמוד תשלום */
+.checkout-page {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.checkout-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.order-summary {
+    background: var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+
+.checkout-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #363636;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.payment-methods {
+    margin: 1.5rem 0;
+}
+
+.payment-methods .form-group {
+    margin-bottom: 0.5rem;
+}
+
+.payment-methods input[type="radio"] {
+    width: auto;
+    margin-left: 0.5rem;
+}
+
+.submit-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .checkout-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .order-summary {
+        position: static;
+    }
+}
+
+@keyframes cartBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes countPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); background-color: var(--border-color); }
+    100% { transform: scale(1); }
+}
+
+.cart-bounce {
+    animation: cartBounce 0.5s ease;
+}
+
+#cart-count.count-update {
+    animation: countPop 0.5s ease;
+}
+
+/* עיצוב הפוטר */
+footer {
+    background-color: var(--secondary-color);
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.footer-section h4 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: var(--text-color);
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul a:hover {
+    color: var(--border-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.social-links a:hover {
+    color: #E1306C;  /* צבע האינסטגרם */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+.contact-link i {
+    font-size: 1.4rem;
+}
+
+.contact-link:hover {
+    color: var(--border-color);
+}
+
+/* צבע ספציפי לוואטסאפ בהובר */
+.contact-link:hover .fa-whatsapp {
+    color: #25D366;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .social-links,
+    .contact-links {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* עיצוב תצוגת המידה הנבחרת */
+.selected-size {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.selected-size span {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* עדכון כפתור בחירת מידה */
+.select-size-btn {
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
+.select-size-btn:hover {
+    background: var(--secondary-color);
+}
+
+/* עיצוב כפתורי המידה במודל */
+.size-btn.selected {
+    background: var(--border-color);
+    color: white;
+    font-weight: 600;
+}
+
+/* עיצוב המודל */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
+    position: relative;
+    direction: rtl;
+    text-align: center;
+    z-index: 1050;
+}
+
+.close-modal {
+    position: absolute;
+    left: 1rem;
+    top: 0.3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+/* עיצוב טבלת המידות */
+.size-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    background: white;
+    
+}
+
+.size-table th,
+.size-table td {
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.8rem;
+    text-align: center;
+}
+
+.size-table th {
+    background-color: var(--secondary-color);
+    font-weight: 600;
+    border-top: 1px solid var(--border-color);
+}
+
+/* עיצוב כפתורי בחירת מידה */
+.size-selection {
+    margin-top: 2rem;
+}
+
+.size-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1100;
+}
+
+.size-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 60px;
+    font-size: 0.9rem;
+    margin: 0.25rem;
+    position: relative;
+    z-index: 1100;
+}
+
+.size-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.size-btn.selected {
+    background: var(--border-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 4% 1rem;
+        padding: 1rem;
+    }
+    
+    .size-table {
+        font-size: 0.85rem;
+    }
+    
+    .size-table th,
+    .size-table td {
+        padding: 0.5rem;
+    }
+
+    .size-buttons {
+        gap: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .size-btn {
+        margin: 0.10rem;
+    }
+} 

@@ -1,0 +1,13 @@
+/
+├── index.html
+├── cart.html
+├── checkout.html
+├── css/
+│   ├── style.css
+│   └── swiper.min.css
+├── js/
+│   ├── main.js
+│   ├── cart.js
+│   └── swiper.min.js
+└── images/
+    └── products/ 
