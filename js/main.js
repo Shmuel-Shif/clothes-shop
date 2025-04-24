@@ -1,57 +1,3 @@
-// נתוני המוצרים - בהמשך אפשר להעביר למסד נתונים
-const products = [
-    {
-        id: 1,
-        name: "חליפת ערב אלגנטית",
-        price: 99.99,
-        images: [
-            "images/products/shirt-1.jpg",
-            "images/products/shirt-2.jpg",
-            "images/products/shirt-3.jpg"
-        ]
-    },
-    {
-        id: 2,
-        name: "מכנסי ג'ינס אופנתיים",
-        price: 199.99,
-        images: [
-            "images/products/jeans-1.jpg",
-            "images/products/jeans-2.jpg",
-            "images/products/jeans-3.jpg"
-        ]
-    },
-    {
-        id: 3,
-        name: "נעלי ספורט מעוצבות",
-        price: 299.99,
-        images: [
-            "images/products/shoes-1.jpg",
-            "images/products/shoes-2.jpg",
-            "images/products/shoes-3.jpg"
-        ]
-    },
-    {
-        id: 4,
-        name: "חולצת כותנה קלאסית",
-        price: 899.99,
-        images: [
-            "images/products/suit-1.jpg",
-            "images/products/suit-2.jpg",
-            "images/products/suit-3.jpg"
-        ]
-    },
-    {
-        id: 5,
-        name: "עניבות באיכות גבוהה",
-        price: 329.99,
-        images: [
-            "images/products/tie-1.jpg",
-            "images/products/tie-2.jpg",
-            "images/products/tie-3.jpg"
-        ]
-    }
-];
-
 // יצירת כרטיסי המוצרים
 function createProductCards() {
     const container = document.getElementById('products-container');
@@ -59,52 +5,23 @@ function createProductCards() {
     products.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
-        card.setAttribute('data-product-id', product.id);
         
-        // יצירת קרוסלת תמונות
-        const splideContainer = document.createElement('div');
-        splideContainer.className = 'splide';
-        splideContainer.innerHTML = `
-            <div class="splide__track">
-                <ul class="splide__list">
-                    ${product.images.map(img => `
-                        <li class="splide__slide">
-                            <img src="${img}" alt="${product.name}">
-                        </li>
-                    `).join('')}
-                </ul>
+        const cardLink = document.createElement('a');
+        cardLink.href = `product.html?id=${product.id}`;
+        cardLink.className = 'product-link';
+        
+        cardLink.innerHTML = `
+            <div class="product-image">
+                <img src="${product.images[0]}" alt="${product.name}">
+            </div>
+            <div class="product-info">
+                <h3>${product.name}</h3>
+                <p class="price">${product.price}</p>
             </div>
         `;
-
-        const info = document.createElement('div');
-        info.className = 'product-info';
-        info.innerHTML = `
-            <h3>${product.name}</h3>
-            <p class="price">${product.price}</p>
-            <div class="selected-size">מידה: <span>${product.selectedSize || 'לא נבחרה מידה'}</span></div>
-            <button class="select-size-btn" onclick="openSizeModal(${product.id})">${product.selectedSize ? 'שינוי מידה' : 'בחרי מידה'}</button>
-            <button class="add-to-cart" onclick="addToCart(${product.id})">הוסיפי לעגלה</button>
-        `;
-
-        card.appendChild(splideContainer);
-        card.appendChild(info);
+        
+        card.appendChild(cardLink);
         container.appendChild(card);
-
-        // אתחול Splide לכל מוצר
-        new Splide(splideContainer, {
-            type: 'loop',
-            perPage: 1,
-            arrows: true,
-            pagination: true,
-            height: '200px',
-            direction: 'rtl',
-            classes: {
-                arrows: 'splide__arrows custom-arrows',
-                arrow: 'splide__arrow custom-arrow',
-                prev: 'splide__arrow--prev custom-prev',
-                next: 'splide__arrow--next custom-next',
-            }
-        }).mount();
     });
 }
 
@@ -229,7 +146,7 @@ function addToCart(productId) {
 // עדכון מספר הפריטים בעגלה
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const count = cart.length;
     document.getElementById('cart-count').textContent = count;
 }
 

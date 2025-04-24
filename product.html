@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הקולב שבבית</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="images/logo/logooo.png" type="image/jpg">
+</head>
+<body>
+    <!-- אותו Header כמו בדף הראשי -->
+    <header>
+        <nav> 
+            <div class="logo-container">
+                <a href="index.html" class="logo">
+                    <img src="images/logo/logo.jpg" alt="הקולב שבבית" class="logo-image">
+                    <span>הקולב שבבית</span>
+                </a>
+            </div>
+
+            <div class="cart-icon">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="product-page">
+        <div class="product-container">
+            <div class="product-gallery">
+                <div class="gallery-container">
+                    <div class="gallery-image">
+                        <img id="main-image" src="" alt="">
+                    </div>
+                    <button class="gallery-arrow prev-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="gallery-arrow next-arrow">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="gallery-dots">
+                        <!-- הנקודות יתווספו דינמית דרך JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <div class="product-details">
+                <h1 class="product-title"></h1>
+                <p class="product-price"></p>
+                <div class="product-description"></div>
+                <div class="size-selection">
+                    <h3>בחרי מידה:</h3>
+                    <div class="size-buttons"></div>
+                </div>
+                <div class="quantity-selector">
+                    <label>כמות:</label>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" onclick="updateQuantity(-1)">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1" max="10" onchange="updateQuantityInput(this.value)" onkeyup="updateQuantityInput(this.value)">
+                        <button class="quantity-btn plus" onclick="updateQuantity(1)">+</button>
+                    </div>
+                </div>
+                <div class="total-price">
+                    סה"כ: <span class="total-amount"></span>
+                </div>
+                <button class="add-to-cart-btn">הוסיפי לעגלה</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- מודל טבלת מידות -->
+    <div id="size-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>טבלת מידות</h2>
+            <table class="size-table">
+                <thead>
+                    <tr>
+                        <th>מידה (IL)</th>
+                        <th>מידה (EU)</th>
+                        <th>היקף חזה (ס"מ)</th>
+                        <th>היקף מותן (ס"מ)</th>
+                        <th>היקף ירכיים (ס"מ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>34</td><td>XS</td><td>78-82</td><td>60-64</td><td>86-90</td></tr>
+                    <tr><td>36</td><td>S</td><td>82-86</td><td>64-68</td><td>90-94</td></tr>
+                    <tr><td>38</td><td>M</td><td>86-90</td><td>68-72</td><td>94-98</td></tr>
+                    <tr><td>40</td><td>L</td><td>90-96</td><td>72-76</td><td>98-102</td></tr>
+                    <tr><td>42</td><td>XL</td><td>96-102</td><td>76-82</td><td>102-108</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- מודל להודעת שגיאה -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content error-content">
+            <span class="close-modal">&times;</span>
+            <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>אנא בחרי מידה לפני ההוספה לעגלה</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- אותו Footer כמו בדף הראשי -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>קצת עליי</h4>
+                <p>
+                   היי, אני חנה הלפרין.<br>
+                   בעלת החנות "הקולב בבית".<br>
+                   בחרתי להקים חנות לנשים <br>
+                   מתוך אהבה לסטייל ולפרטים הקטנים.<br>
+                   כל פריט אצלנו נבחר בקפידה<br>
+                   כדי שאת תמצאי בידיוק<br>
+                   את מה שמחמיא, נוח ויפה באמת.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>שירות לקוחות</h4>
+                <div class="contact-links">
+                    <a href="tel:0552830174" class="contact-link">
+                        <i class="fas fa-phone"></i>
+                        <span>055-283-0174</span>
+                    </a>
+                    <a href="https://wa.me/972552830174" class="contact-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>055-283-0174</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>עקבו אחרינו</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/chanahalperin/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 הקולב שבבית.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/product.js"></script>
+</body>
+</html> 
