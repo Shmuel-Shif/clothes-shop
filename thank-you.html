@@ -1,1 +1,51 @@
- 
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תודה על הזמנתך - הקולב שבבית</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="thank-you-content">
+            <h1>תודה על הזמנתך!</h1>
+            <p>ההזמנה התקבלה בהצלחה.</p>
+            <p>ניצור איתך קשר בהקדם לאישור ההזמנה.</p>
+            <div class="thank-you-actions">
+                <a href="index.html" class="home-btn">חזרה לדף הבית</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- הוספת הלודר -->
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- הוספת הסקריפט -->
+    <script>
+        function showLoader() {
+            document.querySelector('.loader-container').classList.add('show');
+        }
+
+        function hideLoader() {
+            document.querySelector('.loader-container').classList.remove('show');
+        }
+
+        window.addEventListener('beforeunload', () => {
+            showLoader();
+        });
+
+        window.addEventListener('load', () => {
+            hideLoader();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' && !e.target.hasAttribute('target')) {
+                showLoader();
+            }
+        });
+    </script>
+</body>
+</html> 

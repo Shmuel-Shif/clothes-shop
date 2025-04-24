@@ -123,7 +123,6 @@ function addToCart() {
         size: selectedSize.textContent,
         image: product.images[0],
         quantity: currentQuantity,
-        // עיגול ל-2 ספרות אחרי הנקודה
         totalPrice: (product.price * currentQuantity).toFixed(2)
     };
 
@@ -217,6 +216,24 @@ function initGallery(product) {
         showImage(newIndex);
     };
 }
+
+function showLoader() {
+    document.querySelector('.loader-container').classList.add('show');
+}
+
+function hideLoader() {
+    document.querySelector('.loader-container').classList.remove('show');
+}
+
+// הוספת לודר במעבר בין עמודים
+window.addEventListener('beforeunload', () => {
+    showLoader();
+});
+
+// הצגת הלודר בטעינת העמוד
+window.addEventListener('load', () => {
+    hideLoader();
+});
 
 // קריאה לפונקציה כשהדף נטען
 document.addEventListener('DOMContentLoaded', () => {

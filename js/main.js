@@ -167,4 +167,29 @@ document.addEventListener('DOMContentLoaded', () => {
             closeSizeModal();
         }
     });
+});
+
+function showLoader() {
+    document.querySelector('.loader-container').classList.add('show');
+}
+
+function hideLoader() {
+    document.querySelector('.loader-container').classList.remove('show');
+}
+
+// הצגת הלודר בטעינת העמוד
+window.addEventListener('load', () => {
+    hideLoader();
+});
+
+// הוספת לודר במעבר בין עמודים
+window.addEventListener('beforeunload', () => {
+    showLoader();
+});
+
+// הצגת הלודר בלחיצה על לינקים
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' && !e.target.hasAttribute('target')) {
+        showLoader();
+    }
 }); 

@@ -22,42 +22,22 @@ function handlePaymentMethodChange() {
     creditCardFields.style.display = paymentMethod === 'credit-card' ? 'block' : 'none';
 }
 
-// טיפול בשליחת הטופס
-function handleSubmit(event) {
-    event.preventDefault();
-    
-    // בדיקת תקינות הטופס
-    const form = event.target;
-    if (!form.checkValidity()) {
-        return;
-    }
-    
-    // הצגת הודעת הצלחה
-    alert('תודה על הרכישה!');
-    
-    // ניקוי העגלה
-    localStorage.removeItem('cart');
-    
-    // חזרה לדף הבית
-    window.location.href = 'index.html';
+// פונקציות להצגת והסתרת ה-Loader
+function showLoader() {
+    document.querySelector('.loader-container').classList.add('show');
 }
 
-// אתחול העמוד
-document.addEventListener('DOMContentLoaded', () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+function hideLoader() {
+    document.querySelector('.loader-container').classList.remove('show');
+}
+
+// עדכון הקוד הקיים בטיפול בשליחת הטופס
+document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
     
-    let total = selectedItems.reduce((sum, index) => {
-        const item = cart[index];
-        return sum + (item ? parseFloat(item.totalPrice) : 0);
-    }, 0);
+    showLoader(); // הצגת ה-Loader
 
-    document.getElementById('checkout-total').textContent = `₪${total.toFixed(2)}`;
-
-    // הסרת הטופס הישן והשארת רק את הכפתורים לתשלום
-    document.getElementById('checkout-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        
+    try {
         // קבלת הפרטים מהטופס
         const fullName = document.getElementById('fullName').value;
         const phone = document.getElementById('phone').value;
@@ -92,21 +72,39 @@ ${itemsList}
 אני מצרפת צילום מסך של התשלום.
 אשמח לקבל אישור שההזמנה התקבלה.`;
 
-        // פתיחת ווצאפ בחלון חדש
+        // פתיחת ווצאפ והמתנה קצרה
         const encodedMessage = encodeURIComponent(message);
         const whatsappURL = `https://wa.me/972552830174?text=${encodedMessage}`;
         window.open(whatsappURL, '_blank', 'width=600,height=600');
 
-        // ניקוי העגלה והפריטים הנבחרים
+        // המתנה של שנייה אחת לפני המעבר
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // ניקוי העגלה
         localStorage.removeItem('cart');
         localStorage.removeItem('selectedItems');
 
-        // הצגת הודעת הצלחה (אופציונלי)
-        alert('תודה על הזמנתך! ההזמנה נשלחה בהצלחה.');
+        // מעבר לעמוד התודה
+        window.location.href = 'thank-you.html';
+    } catch (error) {
+        console.error('Error:', error);
+        alert('אירעה שגיאה, אנא נסי שוב');
+    } finally {
+        hideLoader(); // הסתרת ה-Loader בכל מקרה
+    }
+});
 
-        // חזרה לדף הבית
-        window.location.href = 'index.html';
-    });
+// אתחול העמוד
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+    
+    let total = selectedItems.reduce((sum, index) => {
+        const item = cart[index];
+        return sum + (item ? parseFloat(item.totalPrice) : 0);
+    }, 0);
+
+    document.getElementById('checkout-total').textContent = `₪${total.toFixed(2)}`;
 
     const form = document.getElementById('checkout-form');
     const submitBtn = form.querySelector('.checkout-submit-btn');
@@ -174,4 +172,20 @@ function copyToClipboard(elementId) {
             btn.innerHTML = originalIcon;
         }, 2000);
     });
-} 
+}
+
+// הוספת לודר במעבר בין עמודים
+window.addEventListener('beforeunload', () => {
+    showLoader();
+});
+
+window.addEventListener('load', () => {
+    hideLoader();
+});
+
+// הצגת הלודר בלחיצה על לינקים
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' && !e.target.hasAttribute('target')) {
+        showLoader();
+    }
+}); 

@@ -45,7 +45,7 @@ nav {
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #363636;
     text-decoration: none;
@@ -59,7 +59,7 @@ nav {
 }
 
 .logo-image {
-    height: 70px;
+    height: 65px;
     width: auto;
     object-fit: contain;
     border-radius: 4px;
@@ -119,6 +119,7 @@ nav {
     padding: 2rem;
     max-width: 1600px;
     margin: 0 auto;
+    margin-top: 1.5rem;
 }
 
 .product-card {
@@ -286,6 +287,23 @@ nav {
 }
 
 @media (max-width: 768px) {
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .logo-image {
+        height: 50px;
+    }
+
+    .cart-icon i{
+        font-size: 1.3rem;
+    }
+
+    #cart-count {
+        font-size: 0.7rem;
+    }
+
     .products-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.8rem;
@@ -564,6 +582,20 @@ nav {
         width: 10px;
         height: 10px;
     }
+
+    .cart-page h1 {
+        font-size: 1.5rem;
+    }
+
+    .total {
+        font-size: 1rem;
+    }
+
+    .checkout-btn {
+        font-size: 0.9rem;
+    }
+    
+    
 }
 
 /* סגנונות עמוד תשלום */
@@ -593,13 +625,6 @@ nav {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.payment-rules {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
 .checkout-form {
     width: 100%;
 }
@@ -610,6 +635,10 @@ nav {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 1.5rem;
+}
+
+.form-section h3 {
+    margin-bottom: 1rem;
 }
 
 .form-group {
@@ -689,6 +718,7 @@ nav {
         position: static;
         margin-bottom: 1rem;
     }
+
 }
 
 @keyframes countPop {
@@ -722,13 +752,13 @@ footer {
     color: var(--text-color);
     font-size: 1.2rem;
     margin-bottom: 1rem;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 .footer-section p {
     color: var(--text-color);
     line-height: 1.6;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .footer-section ul {
@@ -772,7 +802,7 @@ footer {
     margin-top: 2rem;
     border-top: 1px solid var(--border-color);
     color: var(--text-color);
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .contact-links {
@@ -789,7 +819,7 @@ footer {
     text-decoration: none;
     font-size: 1.1rem;
     transition: color 0.3s ease;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .contact-link i {
@@ -881,7 +911,9 @@ footer {
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
+    padding: 1.5rem;
+    text-align: center;
 }
 
 .close-modal {
@@ -895,7 +927,7 @@ footer {
 }
 
 .modal-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--text-color);
     margin-top: 2.5rem;
 }
@@ -926,7 +958,7 @@ footer {
 .size-buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.5rem;
     margin: 1rem 0;
 }
 
@@ -949,7 +981,7 @@ footer {
 /* התאמה למובייל */
 @media (max-width: 768px) {
     .modal-content {
-        width: 85%;
+        width: 95%;
         padding: 1.5rem;
         margin: 0;
     }
@@ -1078,6 +1110,7 @@ footer {
 .product-description {
     line-height: 1.8;
     color: var(--text-color);
+    font-weight: 500;
 }
 
 .size-selection h3 {
@@ -1133,11 +1166,11 @@ footer {
     }
 
     .product-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .product-price {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 }
 
@@ -1357,6 +1390,7 @@ footer {
     cursor: pointer;
     font-size: 1rem;
     user-select: none;
+    font-weight: 500;
 }
 
 .checkbox-container input {
@@ -1571,6 +1605,8 @@ footer {
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-weight: 500;
 }
 
 .bank-info {
@@ -1624,6 +1660,7 @@ footer {
     padding: 0.8rem;
     border-radius: 8px;
     border: 1px solid var(--border-color);
+    margin-top: 1rem;
 }
 
 .copy-btn {
@@ -1648,6 +1685,7 @@ footer {
     top: calc(8rem + 220px); /* מיקום אחרי תיבת הקופה */
     height: fit-content;
     margin-top: 1rem;
+    font-weight: 500;
 }
 
 .payment-rules h2 {
@@ -1683,4 +1721,114 @@ footer {
         top: 0;
         margin-top: 1rem;
     }
+}
+
+.thank-you-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--background-color);
+}
+
+.thank-you-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    font-weight: 500;
+}
+
+.thank-you-content h1 {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.thank-you-content p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.thank-you-actions {
+    margin-top: 2rem;
+}
+
+.home-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: rgb(247, 140, 163);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+    background: var(--text-color);
+}
+
+/* עיצוב ה-Loader */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.loader-container.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loader {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader:before {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: var(--border-color);
+    border-bottom-color: var(--border-color);
+    animation: spin 1s linear infinite;
+}
+
+.loader:after {
+    content: '';
+    width: 50px;  /* גודל גדול יותר ללוגו */
+    height: 50px;  /* גודל גדול יותר ללוגו */
+    background: url('../images/logo/logooo.png') center/contain no-repeat;  /* תיקון הנתיב */
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 } 

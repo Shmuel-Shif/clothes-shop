@@ -234,6 +234,30 @@ function saveSelectionState(index, isChecked) {
     localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
 }
 
+function showLoader() {
+    document.querySelector('.loader-container').classList.add('show');
+}
+
+function hideLoader() {
+    document.querySelector('.loader-container').classList.remove('show');
+}
+
+// הוספת לודר במעבר בין עמודים
+window.addEventListener('beforeunload', () => {
+    showLoader();
+});
+
+window.addEventListener('load', () => {
+    hideLoader();
+});
+
+// הצגת הלודר בלחיצה על לינקים
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' && !e.target.hasAttribute('target')) {
+        showLoader();
+    }
+});
+
 // אתחול העמוד
 document.addEventListener('DOMContentLoaded', () => {
     renderCart();
