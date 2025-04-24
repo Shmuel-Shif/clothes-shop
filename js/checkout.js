@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
    מידה: ${item.size}
    כמות: ${item.quantity}
    מחיר: ₪${item.totalPrice}
-   לצפייה במוצר: https://shmuel-shif.github.io/clothes-shop/images/${item.image}`;
+   לצפייה במוצר: https://shmuel-shif.github.io/clothes-shop/${item.image}`;
         }).join('\n\n');
 
         // יצירת ההודעה
