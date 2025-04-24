@@ -96,6 +96,16 @@ ${itemsList}
         const encodedMessage = encodeURIComponent(message);
         const whatsappURL = `https://wa.me/972552830174?text=${encodedMessage}`;
         window.open(whatsappURL, '_blank', 'width=600,height=600');
+
+        // ניקוי העגלה והפריטים הנבחרים
+        localStorage.removeItem('cart');
+        localStorage.removeItem('selectedItems');
+
+        // הצגת הודעת הצלחה (אופציונלי)
+        alert('תודה על הזמנתך! ההזמנה נשלחה בהצלחה.');
+
+        // חזרה לדף הבית
+        window.location.href = 'index.html';
     });
 
     const form = document.getElementById('checkout-form');
