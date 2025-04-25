@@ -35,7 +35,7 @@ function hideLoader() {
 document.getElementById('checkout-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    showLoader(); // הצגת ה-Loader
+    showLoader(); // הצגת הלודר רק בשליחת הטופס
 
     try {
         // קבלת הפרטים מהטופס
@@ -89,8 +89,7 @@ ${itemsList}
     } catch (error) {
         console.error('Error:', error);
         alert('אירעה שגיאה, אנא נסי שוב');
-    } finally {
-        hideLoader(); // הסתרת ה-Loader בכל מקרה
+        hideLoader(); // הסתרת הלודר במקרה של שגיאה
     }
 });
 
@@ -151,10 +150,6 @@ function calculateTotal(items) {
 
 function openBitPayment() {
     window.open("bit://");
-}
-
-function openPayboxPayment() {
-    window.open("paybox://");
 }
 
 function copyToClipboard(elementId, event) {

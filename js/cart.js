@@ -234,30 +234,6 @@ function saveSelectionState(index, isChecked) {
     localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
 }
 
-function showLoader() {
-    document.querySelector('.loader-container').classList.add('show');
-}
-
-function hideLoader() {
-    document.querySelector('.loader-container').classList.remove('show');
-}
-
-// הצגת הלודר רק בלחיצה על לינקים
-document.addEventListener('click', (e) => {
-    const target = e.target.closest('a');
-    if (target && !target.hasAttribute('target') && !target.hasAttribute('download')) {
-        showLoader();
-    }
-});
-
-window.addEventListener('load', () => {
-    hideLoader();
-});
-
-window.addEventListener('popstate', () => {
-    hideLoader();
-});
-
 // אתחול העמוד
 document.addEventListener('DOMContentLoaded', () => {
     renderCart();
