@@ -1974,4 +1974,14 @@ footer {
     .payment-hint {
         display: block;
     }
+}
+
+.bit-instructions {
+    font-size: 14px;
+    color: #666;
+    margin-top: 12px;
+    line-height: 1.4;
+    padding: 8px;
+    background: #f5f5f5;
+    border-radius: 6px;
 } 
