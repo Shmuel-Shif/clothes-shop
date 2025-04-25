@@ -22,7 +22,6 @@ function handlePaymentMethodChange() {
     creditCardFields.style.display = paymentMethod === 'credit-card' ? 'block' : 'none';
 }
 
-// פונקציות להצגת והסתרת ה-Loader
 function showLoader() {
     document.querySelector('.loader-container').classList.add('show');
 }
@@ -35,7 +34,7 @@ function hideLoader() {
 document.getElementById('checkout-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    showLoader(); // הצגת הלודר רק בשליחת הטופס
+    showLoader(); // הצגת הלודר בלחיצה על ביצוע הזמנה
 
     try {
         // קבלת הפרטים מהטופס
@@ -203,23 +202,3 @@ function copyToClipboard(elementId, event) {
     return false;
 }
 
-// הוספת לודר במעבר בין עמודים
-// window.addEventListener('beforeunload', () => {
-//     showLoader();
-// });
-
-// הצגת הלודר רק בלחיצה על לינקים
-document.addEventListener('click', (e) => {
-    const target = e.target.closest('a');
-    if (target && !target.hasAttribute('target') && !target.hasAttribute('download')) {
-        showLoader();
-    }
-});
-
-window.addEventListener('load', () => {
-    hideLoader();
-});
-
-window.addEventListener('popstate', () => {
-    hideLoader();
-}); 

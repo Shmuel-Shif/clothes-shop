@@ -227,10 +227,6 @@ function showLoader() {
     document.querySelector('.loader-container').classList.add('show');
 }
 
-function hideLoader() {
-    document.querySelector('.loader-container').classList.remove('show');
-}
-
 // הוספת לודר במעבר בין עמודים
 // window.addEventListener('beforeunload', () => {
 //     showLoader();

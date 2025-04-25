@@ -18,34 +18,5 @@
         </div>
     </div>
     
-    <!-- הוספת הלודר -->
-    <div class="loader-container">
-        <div class="loader"></div>
-    </div>
-    
-    <!-- הוספת הסקריפט -->
-    <script>
-        function showLoader() {
-            document.querySelector('.loader-container').classList.add('show');
-        }
-
-        function hideLoader() {
-            document.querySelector('.loader-container').classList.remove('show');
-        }
-
-        window.addEventListener('beforeunload', () => {
-            showLoader();
-        });
-
-        window.addEventListener('load', () => {
-            hideLoader();
-        });
-
-        document.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A' && !e.target.hasAttribute('target')) {
-                showLoader();
-            }
-        });
-    </script>
 </body>
 </html> 
