@@ -151,12 +151,12 @@ function calculateTotal(items) {
 
 function openBitPayment() {
     const total = document.getElementById('checkout-total').textContent.replace('₪', '');
-    window.open(`https://bit.ly/3Nq4tZq`, '_blank');
+    window.open(`https://www.bitpay.co.il/app/pay?phone=0552830174&amount=${total}`, '_blank');
 }
 
 function openPayboxPayment() {
     const total = document.getElementById('checkout-total').textContent.replace('₪', '');
-    window.open(`https://payboxapp.page.link/pay/0552830174/${total}`, '_blank');
+    window.open(`https://payboxapp.page.link/payment?phone=0552830174&amount=${total}`, '_blank');
 }
 
 function copyToClipboard(elementId, event) {
