@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('checkout-form');
     const submitBtn = form.querySelector('.checkout-submit-btn');
     
-    // בדיקת תקינות הטופס בכל שינוי
+    // עדכון פונקציית validateForm
     function validateForm() {
         const requiredFields = form.querySelectorAll('[required]');
         let isValid = true;
@@ -119,14 +119,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // עדכון מצב הכפתור
+        // עדכון מצב כפתור ביצוע הזמנה
         submitBtn.disabled = !isValid;
+        
+        // עדכון מצב כפתור הביט
+        const bitBtn = document.querySelector('.payment-app-logo');
+        if (bitBtn) {
+            if (!isValid) {
+                bitBtn.style.opacity = '0.5';
+                bitBtn.style.cursor = 'not-allowed';
+                bitBtn.onclick = (e) => e.preventDefault();
+            } else {
+                bitBtn.style.opacity = '1';
+                bitBtn.style.cursor = 'pointer';
+                bitBtn.onclick = openBitPayment;
+            }
+        }
     }
     
     // האזנה לשינויים בשדות החובה
     form.querySelectorAll('[required]').forEach(field => {
         field.addEventListener('input', validateForm);
     });
+    
+    // עדכון ה-HTML של כפתור הביט
+    document.querySelector('.payment-app-logo').style.opacity = '0.5';
+    document.querySelector('.payment-app-logo').style.cursor = 'not-allowed';
     
     // בדיקה ראשונית
     validateForm();
@@ -149,7 +167,15 @@ function calculateTotal(items) {
 }
 
 function openBitPayment() {
+    // פותח את ביט
     window.open("bit://");
+    
+    // אחרי שנייה פותח את הווצאפ עם ההודעה
+    setTimeout(() => {
+        const orderDetails = generateOrderMessage();
+        const whatsappLink = `https://wa.me/972552830174?text=${encodeURIComponent(orderDetails)}`;
+        window.open(whatsappLink);
+    }, 1000);
 }
 
 function copyToClipboard(elementId, event) {
