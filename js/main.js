@@ -177,19 +177,19 @@ function hideLoader() {
     document.querySelector('.loader-container').classList.remove('show');
 }
 
-// הצגת הלודר בטעינת העמוד
+// הצגת הלודר רק בלחיצה על לינקים
+document.addEventListener('click', (e) => {
+    const target = e.target.closest('a'); // מאפשר לחיצה גם על אלמנטים בתוך הלינק
+    if (target && !target.hasAttribute('target') && !target.hasAttribute('download')) {
+        showLoader();
+    }
+});
+
 window.addEventListener('load', () => {
     hideLoader();
 });
 
-// הוספת לודר במעבר בין עמודים
-window.addEventListener('beforeunload', () => {
-    showLoader();
-});
-
-// הצגת הלודר בלחיצה על לינקים
-document.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A' && !e.target.hasAttribute('target')) {
-        showLoader();
-    }
+// הוספת טיפול בכפתור חזרה
+window.addEventListener('popstate', () => {
+    hideLoader();
 }); 

@@ -127,8 +127,14 @@ function addToCart() {
     };
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+
+    // עדכון האינדקסים של הפריטים המסומנים
+    selectedItems = selectedItems.map(index => index + 1);
+
     cart.unshift(cartItem);
     localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
     updateCartCount();
 
     const cartIcon = document.querySelector('.cart-icon');
@@ -226,12 +232,23 @@ function hideLoader() {
 }
 
 // הוספת לודר במעבר בין עמודים
-window.addEventListener('beforeunload', () => {
-    showLoader();
+// window.addEventListener('beforeunload', () => {
+//     showLoader();
+// });
+
+// הצגת הלודר רק בלחיצה על לינקים
+document.addEventListener('click', (e) => {
+    const target = e.target.closest('a');
+    if (target && !target.hasAttribute('target') && !target.hasAttribute('download')) {
+        showLoader();
+    }
 });
 
-// הצגת הלודר בטעינת העמוד
 window.addEventListener('load', () => {
+    hideLoader();
+});
+
+window.addEventListener('popstate', () => {
     hideLoader();
 });
 

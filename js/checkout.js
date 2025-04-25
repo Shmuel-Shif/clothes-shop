@@ -151,41 +151,56 @@ function calculateTotal(items) {
 
 function openBitPayment() {
     const total = document.getElementById('checkout-total').textContent.replace('₪', '');
-    // פתיחת אפליקציית ביט
-    window.location.href = `https://www.bitpay.co.il/app/pay?phone=0552830174&amount=${total}`;
+    window.open(`https://bit.ly/3Nq4tZq`, '_blank');
 }
 
 function openPayboxPayment() {
     const total = document.getElementById('checkout-total').textContent.replace('₪', '');
-    // פתיחת אפליקציית פייבוקס
-    window.location.href = `https://payboxapp.page.link/payment?phone=0552830174&amount=${total}`;
+    window.open(`https://payboxapp.page.link/pay/0552830174/${total}`, '_blank');
 }
 
-function copyToClipboard(elementId) {
+function copyToClipboard(elementId, event) {
     const text = document.getElementById(elementId).textContent;
     navigator.clipboard.writeText(text).then(() => {
-        // הצגת הודעת הצלחה
+        // מציאת הכפתור שנלחץ
         const btn = event.target.closest('.copy-btn');
-        const originalIcon = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i>';
+        const icon = btn.querySelector('i');
+        const originalClass = icon.className;
+        
+        // שינוי האייקון ל-V
+        icon.className = 'fas fa-check';
+        
+        // החזרת האייקון המקורי אחרי 2 שניות
         setTimeout(() => {
-            btn.innerHTML = originalIcon;
+            icon.className = originalClass;
         }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
     });
+    
+    // מניעת המשך התנהגות ברירת המחדל של הטופס
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
 }
 
 // הוספת לודר במעבר בין עמודים
-window.addEventListener('beforeunload', () => {
-    showLoader();
+// window.addEventListener('beforeunload', () => {
+//     showLoader();
+// });
+
+// הצגת הלודר רק בלחיצה על לינקים
+document.addEventListener('click', (e) => {
+    const target = e.target.closest('a');
+    if (target && !target.hasAttribute('target') && !target.hasAttribute('download')) {
+        showLoader();
+    }
 });
 
 window.addEventListener('load', () => {
     hideLoader();
 });
 
-// הצגת הלודר בלחיצה על לינקים
-document.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A' && !e.target.hasAttribute('target')) {
-        showLoader();
-    }
+window.addEventListener('popstate', () => {
+    hideLoader();
 }); 

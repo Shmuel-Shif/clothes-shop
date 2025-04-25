@@ -75,7 +75,7 @@
             <div class="form-section">
                 <h3>כתובת למשלוח</h3>
                 <div class="form-group">
-                    <label for="country">מדינה/אזור *</label>
+                    <label for="country">מדינה / אזור *</label>
                     <input type="text" id="country" required>
                 </div>
                 <div class="form-group">
@@ -114,13 +114,13 @@
                 <div class="payment-details bit-details">
                     <h4>תשלום בביט</h4>
                     <div class="payment-info">
-                        <p>מספר טלפון לביט:</p>
                         <div class="copy-wrapper">
                             <span id="bit-phone">0552830174</span>
-                            <button onclick="copyToClipboard('bit-phone')" class="copy-btn">
+                            <button onclick="copyToClipboard('bit-phone', event)" class="copy-btn">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
+                        <img src="images/bit-logo.png" alt="bit" class="payment-app-logo" onclick="openBitPayment()">
                     </div>
                 </div>
 
@@ -128,13 +128,13 @@
                 <div class="payment-details paybox-details">
                     <h4>תשלום בפייבוקס</h4>
                     <div class="payment-info">
-                        <p>מספר טלפון לפייבוקס:</p>
                         <div class="copy-wrapper">
                             <span id="paybox-phone">0552830174</span>
-                            <button onclick="copyToClipboard('paybox-phone')" class="copy-btn">
+                            <button onclick="copyToClipboard('paybox-phone', event)" class="copy-btn">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
+                        <img src="images/paybox-logo.png" alt="paybox" class="payment-app-logo" onclick="openPayboxPayment()">
                     </div>
                 </div>
             </div>

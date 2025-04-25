@@ -1637,43 +1637,55 @@ footer {
 }
 
 .bit-btn {
-    background: #0066FF;
-    color: white;
-    border: none;
+    background: #02B412;
 }
 
 .paybox-btn {
-    background: #FF4B2B;
-    color: white;
-    border: none;
+    background: #FF8C00;
 }
 
 .payment-info {
-    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
 }
 
 .copy-wrapper {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    background: white;
-    padding: 0.8rem;
+    gap: 4px;
+    background: #f5f5f5;
+    padding: 6px 10px;
     border-radius: 8px;
-    border: 1px solid var(--border-color);
-    margin-top: 1rem;
+    width: fit-content;
 }
 
 .copy-btn {
     background: none;
     border: none;
+    padding: 4px;
     cursor: pointer;
-    color: var(--border-color);
-    padding: 0.5rem;
-    transition: all 0.3s ease;
+    color: #666;
+    display: flex;
+    align-items: center;
 }
 
 .copy-btn:hover {
-    color: var(--text-color);
+    color: var(--border-color);
+}
+
+.payment-app-logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* הסרת הכותרת "מספר טלפון" */
+.payment-info p {
+    display: none;
 }
 
 .payment-rules {
@@ -1831,4 +1843,133 @@ footer {
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+}
+
+.copy-success-message {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 10px;
+    animation: fadeInOut 2s ease;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.payment-link-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    width: 100%;
+    justify-content: center;
+}
+
+.payment-link-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.payment-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* אם אין אפשרות להשתמש בתמונות, אפשר להשתמש באייקונים */
+.bit-btn i {
+    color: white;
+    font-size: 16px;
+}
+
+.paybox-btn i {
+    color: white;
+    font-size: 16px;
+}
+
+.app-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.app-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.payment-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* עדכון המיקום של הכפתורים */
+.payment-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.copy-wrapper {
+    flex-grow: 1;
+}
+
+.payment-app-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-app-logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.payment-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.copy-wrapper {
+    flex-grow: 1;
+}
+
+.payment-hint {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    display: none; /* מוסתר כברירת מחדל */
+}
+
+/* מציג את ההודעה רק במחשב */
+@media (min-width: 1024px) {
+    .payment-hint {
+        display: block;
+    }
 } 
