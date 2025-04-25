@@ -150,11 +150,11 @@ function calculateTotal(items) {
 }
 
 function openBitPayment() {
-    window.open('bit://0552830174', '_blank');
+    window.open("bit://");
 }
 
 function openPayboxPayment() {
-    window.open('paybox://0552830174', '_blank');
+    window.open("paybox://");
 }
 
 function copyToClipboard(elementId, event) {
