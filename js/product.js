@@ -223,16 +223,6 @@ function initGallery(product) {
     };
 }
 
-function showLoader() {
-    document.querySelector('.loader-container').classList.add('show');
-}
-
-// הוספת לודר במעבר בין עמודים
-// window.addEventListener('beforeunload', () => {
-//     showLoader();
-// });
-
-// הצגת הלודר רק בלחיצה על לינקים
 document.addEventListener('click', (e) => {
     const target = e.target.closest('a');
     if (target && !target.hasAttribute('target') && !target.hasAttribute('download')) {

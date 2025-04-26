@@ -25,7 +25,7 @@ header {
     box-shadow: 0 2px 10px rgba(255, 20, 147, 0.1);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 999;
     height: var(--header-height);
 }
 
@@ -677,16 +677,6 @@ nav {
 .checkout-submit-btn:disabled {
     cursor: not-allowed;  /* סמן עכבר של חסום */
     position: relative;
-}
-
-/* הוספת X אדום כשהכפתור חסום */
-.checkout-submit-btn:disabled:after {
-    content: '×';
-    position: absolute;
-    right: 1rem;
-    color: #ff4444;
-    font-size: 1.2rem;
-    font-weight: bold;
 }
 
 /* כשהטופס תקין - הכפתור מופיע במלואו */
@@ -1850,4 +1840,250 @@ footer {
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+}
+
+/* עיצוב תיבת החיפוש */
+.search-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    cursor: pointer;
+}
+
+.search-icon:hover {
+    color: rgb(255, 122, 178);
+}
+
+.clear-search {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    cursor: pointer;
+    display: none;
+}
+
+.clear-search:hover {
+    color: rgb(255, 122, 178);
+}
+
+/* עיצוב לודר החיפוש */
+.search-loader {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.search-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid rgb(255, 122, 178);
+    border-radius: 50%;
+    animation: search-spin 1s linear infinite;
+}
+
+@keyframes search-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* עיצוב כפתור קטגוריות */
+.categories-btn {
+    margin-left: 10px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.categories-btn:hover {
+    background: #fff4fd;
+}
+
+/* עיצוב מודל קטגוריות */
+.categories-modal {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 400px;  /* הגדלת הרוחב מ-300px ל-400px */
+    height: 100vh;
+    background: white;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.categories-modal.show {
+    right: 0;
+}
+
+.categories-content {
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+/* Chrome, Safari and Opera */
+.categories-content::-webkit-scrollbar {
+    display: none;
+}
+
+.categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.categories-header h3 {
+    font-size: 1.4em;
+    color: #333;
+    font-weight: 500;
+}
+
+.close-categories {
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.close-categories:hover {
+    color: rgb(255, 122, 178);
+}
+
+.categories-section {
+    margin-bottom: 25px;
+}
+
+.categories-section h4 {
+    color: #333;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    padding: 0 25px;
+}
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 25px;
+}
+
+.category-btn {
+    background: none;
+    border: none;
+    padding: 8px 15px;
+    text-align: right;
+    color: #444;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1em;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.category-btn:hover {
+    color: rgb(255, 122, 178);
+    background: none;
+}
+
+.category-btn.active {
+    background: rgb(255, 122, 178);
+    color: white;
+    border-color: rgb(255, 122, 178);
+}
+
+/* רקע כהה כשהמודל פתוח */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    backdrop-filter: blur(3px);
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* התאמה למובייל */
+@media (max-width: 786px) {
+    .categories-modal {
+        width: 50%;
+    }
+
+    .categories-header h3 {
+        font-size: 1.2em;
+    }
+
+    .category-btn {
+        font-size: 0.9em;
+        padding: 5px 0px;
+    }
+
+    .categories-list {
+        gap: 2px;
+        padding: 0 20px;
+    }
+    
+    .categories-section h4 {
+        font-size: 1em;
+        padding: 0 10px;
+
+    }
+
+    .close-categories {
+        font-size: 1em;
+    }
+
 }

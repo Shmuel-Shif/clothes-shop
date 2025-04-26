@@ -3,6 +3,7 @@ const products = [
         id: 1,
         name: "מכנסי ג'ינס אופנתיים",
         price: "199.99",
+        category: "ג'ינסים",
         images: [
             "images/products/jeans-1.jpg",
             "images/products/jeans-2.jpg",
@@ -16,6 +17,7 @@ const products = [
         id: 2,
         name: "חליפת ערב אלגנטית",
         price: "99.99",
+        category: "",
         images: [
             "images/products/suit-1.jpg",
             "images/products/suit-2.jpg",
@@ -29,6 +31,7 @@ const products = [
         id: 3,
         name: "חולצת כותנה קלאסית",
         price: "899.99",
+        category: "",
         images: [
             "images/products/shirt-1.jpg",
             "images/products/shirt-2.jpg",
@@ -42,6 +45,7 @@ const products = [
         id: 4,
         name: "נעלי ספורט מעוצבות",
         price: 299.99,
+        category: "",
         images: [
             "images/products/shoes-1.jpg",
             "images/products/shoes-2.jpg",
@@ -55,32 +59,7 @@ const products = [
         id: 5,
         name: "עניבות באיכות גבוהה",
         price: 329.99,
-        images: [
-            "images/products/tie-1.jpg",
-            "images/products/tie-2.jpg",
-            "images/products/tie-3.jpg"
-        ],
-        description: `עניבות אלגנטיות מבדים איכותיים.
-    מתאימות לאירועים, פגישות או הופעה ייצוגית.
-    מוסיפות טאץ' מוקפד לכל לוק קלאסי.`
-    },
-    {
-        id: 5,
-        name: "עניבות באיכות גבוהה",
-        price: 329.99,
-        images: [
-            "images/products/tie-1.jpg",
-            "images/products/tie-2.jpg",
-            "images/products/tie-3.jpg"
-        ],
-        description: `עניבות אלגנטיות מבדים איכותיים.
-    מתאימות לאירועים, פגישות או הופעה ייצוגית.
-    מוסיפות טאץ' מוקפד לכל לוק קלאסי.`
-    },
-    {
-        id: 5,
-        name: "עניבות באיכות גבוהה",
-        price: 329.99,
+        category: "",
         images: [
             "images/products/tie-1.jpg",
             "images/products/tie-2.jpg",

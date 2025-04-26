@@ -5,6 +5,7 @@ function createProductCards() {
     products.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
+        card.dataset.category = product.category;
         
         const cardLink = document.createElement('a');
         cardLink.href = `product.html?id=${product.id}`;
@@ -16,7 +17,7 @@ function createProductCards() {
             </div>
             <div class="product-info">
                 <h3>${product.name}</h3>
-                <p class="price">${product.price}</p>
+                <p class="price">${product.price} ₪</p>
             </div>
         `;
         
@@ -167,4 +168,103 @@ document.addEventListener('DOMContentLoaded', () => {
             closeSizeModal();
         }
     });
-}); 
+
+    const searchInput = document.getElementById('search-input');
+    const searchIcon = document.querySelector('.search-icon');
+    const clearIcon = document.querySelector('.clear-search');
+    let isFiltered = false;
+    
+    // חיפוש בלחיצה על Enter
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            filterProducts(searchTerm);
+            isFiltered = true;
+            clearIcon.style.display = 'block';
+        }
+    });
+    
+    // חיפוש בלחיצה על האייקון
+    searchIcon.addEventListener('click', () => {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        filterProducts(searchTerm);
+        isFiltered = true;
+        clearIcon.style.display = 'block';
+    });
+    
+    // איפוס החיפוש
+    clearIcon.addEventListener('click', () => {
+        searchInput.value = '';
+        isFiltered = false;
+        clearIcon.style.display = 'none';
+        // הצגת כל המוצרים
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            card.style.display = 'block';
+        });
+    });
+
+    const categoriesBtn = document.querySelector('.categories-btn');
+    const categoriesModal = document.querySelector('.categories-modal');
+    const closeCategories = document.querySelector('.close-categories');
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    document.body.appendChild(modalOverlay);
+
+    // פתיחת המודל
+    categoriesBtn.addEventListener('click', () => {
+        categoriesModal.classList.add('show');
+        modalOverlay.classList.add('show');
+    });
+
+    // סגירת המודל
+    function closeModal() {
+        categoriesModal.classList.remove('show');
+        modalOverlay.classList.remove('show');
+    }
+
+    closeCategories.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+
+    // טיפול בלחיצה על קטגוריה
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const category = btn.dataset.category;
+            filterProducts(category);
+            closeModal();
+            
+            // עדכון כפתור הניקוי
+            const clearIcon = document.querySelector('.clear-search');
+            clearIcon.style.display = 'block';
+            isFiltered = true;
+        });
+    });
+});
+
+function filterProducts(searchTerm) {
+    const searchIcon = document.querySelector('.search-icon');
+    const searchLoader = document.querySelector('.search-loader');
+
+    searchIcon.style.display = 'none';
+    searchLoader.style.display = 'block';
+
+    setTimeout(() => {
+        const productCards = document.querySelectorAll('.product-card');
+        
+        productCards.forEach(card => {
+            const productName = card.querySelector('h3').textContent.toLowerCase();
+            const productCategory = card.dataset.category; // נוסיף את זה למוצרים
+            
+            if (productName.includes(searchTerm.toLowerCase()) || 
+                (productCategory && productCategory === searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        searchIcon.style.display = 'block';
+        searchLoader.style.display = 'none';
+    }, 1000);
+} 
