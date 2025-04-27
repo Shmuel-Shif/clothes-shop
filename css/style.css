@@ -2059,7 +2059,7 @@ footer {
 /* התאמה למובייל */
 @media (max-width: 786px) {
     .categories-modal {
-        width: 50%;
+        width: 75%;
     }
 
     .categories-header h3 {
